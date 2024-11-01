@@ -1,0 +1,235 @@
+##############################################
+# Settings
+##############################################
+# Use Xft?
+use_xft yes
+xftfont Droid Sans:size=8
+xftalpha 1
+text_buffer_size 8192
+
+# Update interval in seconds
+update_interval .5
+
+# This is the number of times Conky
+will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Create own window instead of using desktop (required in nautilus)
+# own_window = yes fixes cairo-compmgr issue...
+#own_window yes
+#own_window_transparent yes
+#own_window_type normal
+#own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+#own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_type desktop
+own_window_class conky-semi
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+#minimum_size 230 0
+#maximum_width 200
+maximum_width 270
+
+# Draw shades?
+draw_shades no
+#default_shade_color black
+
+# Draw outlines?
+draw_outline no
+#default_outline_color grey
+
+# Draw borders around text
+draw_borders no
+
+# Stippled borders?
+stippled_borders 0
+
+# border width
+border_width 1
+
+#own_window_colour 7777777
+
+############Colors#########
+default_color white   #use ${color} to revert to default
+#time, date, mx version
+color1 FFFFFF
+#sections and horizonal lines, item descriptions
+#color2 FF6644
+color2 3399FF
+#readings
+color3 AAAAAA
+#cpus
+color4 000000
+#cpu values
+color5 FF0000
+color6 11CC11
+color7 FFFF00
+color8 77FF77
+###########################
+
+############ Mouse ########
+mp /org/freedesktop/UPower/devices/mouse_dev_C8_CC_25_C7_85_E0
+
+
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_right
+#alignment top_middle
+#alignment bottom_left
+#alignment bottom_right
+
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+gap_x 35
+gap_y 35
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# number of net samples to average
+# set to 1 to disable averaging
+net_avg_samples 2
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale yes
+
+# Add spaces to keep things from moving about? This only affects
+#certain objects.
+use_spacer none
+
+#own_window_type normal
+
+##############################################
+##
+##  Output starts here
+##
+##############################################
+
+minimum_size 0 0
+TEXT
+
+##############################################
+##
+##  Time
+##
+##############################################
+   ${alignc}${font Arial Black:size=28}${color1}${time %H:%M:%S}${font}
+
+   ${alignc}${font Arial Black:size=12}${time %A %d %B %Y}${font}
+
+##############################################
+##
+##  System Block
+##
+##############################################
+   ${font Arial Black:size=10}${color2}SYSTEM ${font}${hr 4}${color}
+
+   ${image $HOME/.conky/MX-Asq/MX-GeekyTowerLogo/linuxmint-logo-ring.png -p 65,130 -s 140x140}
+
+
+
+
+
+
+
+
+
+
+   ${alignc}${font Arial Black:size=9}${color}${execi 1000 cat /home/tgladden/Mint.version}${font}
+
+   ${alignc}${font Arial Black:size=10}${color6}${execi 1000 whoami}@Tcac-76-Mint${font}
+
+   ${color6}Kernel: ${alignr}${color}${color6}${kernel}${color}
+   ${color6}CPU: ${alignc}${color}${cpu cpu0}% ${alignr}${color}${cpubar cpu0 8,180}
+   ${color6}RAM: ${alignc}${color}$memperc% ${alignr}${color}${membar 8,180}
+   ${color6}SWAP: ${alignc}${color}$swapperc% ${alignr}${color}${swapbar 8,180}
+   ${color6}Uptime: ${alignr}${color}${uptime}
+
+##############################################
+##
+##  Battery block
+##
+##############################################
+   ${font Arial Black:size=10}${color2}BATTERY ${hr 4}${color}${font}
+
+   BATTERY: ${alignr}${execi 1000 cat /sys/class/power_supply/BAT0/capacity}%
+   ${execi 1000 bash conky_mouse_model.sh}:${alignr}${execi 1000 bash conky_mouse_percentage.sh}
+
+##############################################
+##
+##  CPU block
+##
+##############################################
+   ${font Arial Black:size=10}${color2}CPU LOAD ${font}${hr 4}${color}
+
+   CPU1:  ${color}${cpu cpu1}% ${alignr}${color}${cpubar cpu1 7,180}${color}
+   CPU2:  ${color}${cpu cpu2}% ${alignr}${color}${cpubar cpu2 7,180}${color}
+   CPU3:  ${color}${cpu cpu3}% ${alignr}${color}${cpubar cpu3 7,180}${color}
+   CPU4:  ${color}${cpu cpu4}% ${alignr}${color}${cpubar cpu4 7,180}${color}
+   CPU5:  ${color}${cpu cpu5}% ${alignr}${color}${cpubar cpu5 7,180}${color}
+   CPU6:  ${color}${cpu cpu6}% ${alignr}${color}${cpubar cpu6 7,180}${color}
+   CPU7:  ${color}${cpu cpu7}% ${alignr}${color}${cpubar cpu7 7,180}${color}
+   CPU8:  ${color}${cpu cpu8}% ${alignr}${color}${cpubar cpu8 7,180}${color}
+   CPU9:  ${color}${cpu cpu9}% ${alignr}${color}${cpubar cpu9 7,180}${color}
+   CPUA:  ${color}${cpu cpu10}% ${alignr}${color}${cpubar cpu10 7,180}${color}
+   CPUB:  ${color}${cpu cpu11}% ${alignr}${color}${cpubar cpu11 7,180}${color}
+   CPUC:  ${color}${cpu cpu12}% ${alignr}${color}${cpubar cpu12 7,180}${color}
+
+##############################################
+##
+##  Disk block
+##
+##############################################
+   ${font Arial Black:size=10}${color2}DISKS ${font}${hr 4}${color}
+
+   ${color6}File System: ${color}${fs_used_perc /}% ${color6}${alignr}${fs_used /} of ${fs_size /}${color}
+   ${fs_bar 8,60 /}
+   ${color6}SSD-2TB: ${color}${fs_used_perc /media/tgladden/SSD-2TB/}% ${color6}${alignr}${fs_used /media/tgladden/SSD-2TB/} of ${fs_size /media/tgladden/SSD-2TB/}${color}
+   ${fs_bar 8,60 /media/tgladden/SSD-2TB/}
+   ${color6}SSD-8TB: ${color}${fs_used_perc /media/tgladden/SSD-8TB/}% ${color6}${alignr}${fs_used /media/tgladden/SSD-8TB/} of ${fs_size /media/tgladden/SSD-8TB/}${color}
+   ${fs_bar 8,240 /media/tgladden/SSD-8TB/}
+##############################################
+##
+##  Ethernet block  ${if_match "pmfix${time %p}" == "pmfix"}${time %H}${else}${time %I}${endif}
+##
+##############################################
+   ${if_match "${addr enp8s0f1}" != "No Address"}
+   ${font Arial Black:size=10}${color2}ETHERNET ${font}${color8}(${addr enp8s0f1})${color} ${color2}${hr 4}${color}
+   ${downspeedgraph enp8s0f1 30,125 00FF00 99FF99} ${alignr}${upspeedgraph enp8s0f1 30,125 00FF00 99FF99}
+   ${color2}Down: ${downspeedf enp8s0f1}kB/s ${alignr}Up: ${upspeedf enp8s0f1}kB/s${color}
+   ${endif}
+##############################################
+##
+##  Ethernet block  ${if_match "pmfix${time %p}" == "pmfix"}${time %H}${else}${time %I}${endif}
+##
+##############################################
+   ${if_match "${addr enx109add41dd37}" != "No Address"}
+   ${font Arial Black:size=10}${color2}ETHERNET2 ${font}${color8}(${addr enx109add41dd37})${color} ${color2}${hr 4}${color}
+   ${downspeedgraph enx109add41dd37 30,125 00FF00 99FF99} ${alignr}${upspeedgraph enx109add41dd37 30,125 00FF00 99FF99}
+   ${color2}Down: ${downspeedf enx109add41dd37}kB/s ${alignr}Up: ${upspeedf enx109add41dd37}kB/s${color}
+   ${endif}
+##############################################
+##
+##  WIFI block
+##
+##############################################
+   ${font Arial Black:size=10}${color2}WIFI ${font}${color8}(${addr wlp0s20f3})${color} ${color2}${hr 4}${color}
+   ${downspeedgraph wlp0s20f3 30,125 00FF00 99FF99} $alignr${upspeedgraph wlp0s20f3 30,125 00FF00 99FF99}
+   ${color2}Down: ${downspeedf wlp0s20f3}kB/s ${alignr}Up: ${upspeedf wlp0s20f3}kB/s${color}
+
